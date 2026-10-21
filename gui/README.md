@@ -48,7 +48,8 @@ The above list overviews properties I frequently use. You can explore more if yo
 2. Check **Save to file** and choose an output file (use a file name ending in `.mp4` or `.gif`)
 3. Set Rendering range to **Complete animation** for full trajectory. If you only need specific range, set it to **Range**.
 4. (optional) Click **Animation settings...** to adjust video speed.
-5. Click **Render active view point** (with camera icon. you will find this at the bottom of **Render settings**) to render.
+5. To preview how it is shown in output, click top left corner of view point and check **preview mode**.
+6. Click **Render active view point** (with camera icon. you will find this at the bottom of **Render settings**) to render.
 
 ## 7. Save your session
 
