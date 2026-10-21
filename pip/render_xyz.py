@@ -20,8 +20,8 @@ from ovito.modifiers import (
 from ovito.vis import Viewport, TextLabelOverlay, OpenGLRenderer
 
 # ---------------- User settings ----------------
-XYZ_FILE = "traj.xyz"
-OUT_MP4 = "traj.mp4"
+XYZ_FILE = "../data/sample.xyz"
+OUT_MP4 = "sample.mp4"
 
 DT_FS = 0.5                # MD timestep [fs]; time = N * DT_FS
 
