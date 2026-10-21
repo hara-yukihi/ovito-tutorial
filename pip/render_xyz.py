@@ -21,7 +21,7 @@ from ovito.vis import Viewport, TextLabelOverlay, OpenGLRenderer
 from ovito.qt_compatibility import QtCore
 
 # ---------------- User settings ----------------
-XYZ_FILE = "sample.xyz"
+XYZ_FILE = "../data/sample.xyz"
 OUT_MP4 = "sample.mp4"
 
 DT_FS = 0.5                # MD timestep [fs]; time = N * DT_FS
