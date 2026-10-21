@@ -25,7 +25,7 @@ OUT_MP4 = "sample.mp4"
 
 DT_FS = 0.5                # MD timestep [fs]; time = N * DT_FS
 
-TARGET_TYPE = "O"          # element whose radius is changed
+TARGET_TYPE = "Cu"          # element whose radius is changed
 TARGET_RADIUS = 0.8        # new radius for TARGET_TYPE [Angstrom]
 
 BOND_CUTOFF = 1.6          # bond cutoff distance [Angstrom]
