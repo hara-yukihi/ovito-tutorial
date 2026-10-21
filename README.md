@@ -1,5 +1,3 @@
-**English** | [日本語](README.ja.md)
-
 # OVITO Tutorial (GUI and Python)
 
 A beginner-friendly repository for visualizing and analyzing molecular dynamics (MD) results with [OVITO](https://www.ovito.org/).
@@ -11,15 +9,12 @@ The same dataset is used with both the **GUI (mouse operations)** and **Python (
 |---|---|
 | [`data/`](data/) | Practice data `sample.xyz` (256 atoms × 30 frames) |
 | [`gui/`](gui/README.md) | How to use the OVITO GUI (with screenshots) |
-| [`python/`](python/README.md) | Installing the Python module and the analysis script `analyze.py` |
-| [`notebooks/`](notebooks/) | A Jupyter notebook to try things one cell at a time |
+| [`pip/`](pip/README.md) | Installing the Python module and the render script `render_xyz.py` |
 
 ## Suggested order
 
 1. Start with [`gui/README.md`](gui/README.md): open the data and play with it
-2. Set up Python with [`python/README.md`](python/README.md)
-3. Run [`notebooks/ovito_intro.ipynb`](notebooks/ovito_intro.ipynb) from top to bottom
-4. Once comfortable, run `python/analyze.py` on your own data
+2. Set up Python with [`pyip/README.md`](pip/README.md), and run `pip/render_xyz.py` on your own data
 
 ## About the practice data
 
