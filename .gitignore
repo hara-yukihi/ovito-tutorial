@@ -7,5 +7,6 @@ __pycache__/
 # スクリプトやノートブックが作る出力
 results/
 notebooks/snapshot_*.png
+pip/mode_38_1327cm-1*
 # macOS
 .DS_Store
