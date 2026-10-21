@@ -109,7 +109,7 @@ python -c "import ovito; print(ovito.version)"
 
 ## Run the script
 
-1. Put your XYZ file in the same folder (default name: `traj.xyz`).
+1. Go to pip folder.
 2. Edit the settings at the top of `render_xyz.py` if needed.
 3. Run:
 
