@@ -1,35 +1,37 @@
-# OVITO チュートリアル（GUI と Python）
+**English** | [日本語](README.ja.md)
 
-分子動力学 (MD) シミュレーションの結果を、可視化・解析ソフト [OVITO](https://www.ovito.org/) で扱うための入門用リポジトリです。
-同じデータを **GUI（マウス操作）** と **Python（`pip install ovito`）** の両方で扱います。
+# OVITO Tutorial (GUI and Python)
 
-## 中身
+A beginner-friendly repository for visualizing and analyzing molecular dynamics (MD) results with [OVITO](https://www.ovito.org/).
+The same dataset is used with both the **GUI (mouse operations)** and **Python (`pip install ovito`)**.
 
-| フォルダ | 内容 |
+## Contents
+
+| Folder | Description |
 |---|---|
-| [`data/`](data/) | 練習用データ `sample.xyz`（256原子 × 30フレーム） |
-| [`gui/`](gui/) | OVITO GUI の使い方（スクリーンショット付き） |
-| [`python/`](python/) | Python モジュールのインストールと解析スクリプト `analyze.py` |
-| [`notebooks/`](notebooks/) | Jupyter で1セルずつ試せるノートブック |
+| [`data/`](data/) | Practice data `sample.xyz` (256 atoms × 30 frames) |
+| [`gui/`](gui/README.md) | How to use the OVITO GUI (with screenshots) |
+| [`python/`](python/README.md) | Installing the Python module and the analysis script `analyze.py` |
+| [`notebooks/`](notebooks/) | A Jupyter notebook to try things one cell at a time |
 
-## おすすめの順番
+## Suggested order
 
-1. まず [`gui/README.md`](gui/README.md) で、データを開いて動かしてみる
-2. 次に [`python/README.md`](python/README.md) で Python 環境を作る
-3. [`notebooks/ovito_intro.ipynb`](notebooks/ovito_intro.ipynb) を上から実行する
-4. 慣れたら `python/analyze.py` を自分のデータで動かす
+1. Start with [`gui/README.md`](gui/README.md): open the data and play with it
+2. Set up Python with [`python/README.md`](python/README.md)
+3. Run [`notebooks/ovito_intro.ipynb`](notebooks/ovito_intro.ipynb) from top to bottom
+4. Once comfortable, run `python/analyze.py` on your own data
 
-## 練習用データについて
+## About the practice data
 
-`data/sample.xyz` は、Cu の FCC 結晶（中心付近の一部が Ag）がフレームごとに乱れていく人工的な軌跡です。
-物理的に正しい MD ではなく、操作練習用です。
+`data/sample.xyz` is an artificial trajectory of a Cu FCC crystal (with some Ag near the center) that becomes increasingly disordered frame by frame.
+It is not a physically correct MD simulation; it is only meant for practice.
 
-ファイルの形式（**フレーム数だけ繰り返し**）:
+File format (**repeated for every frame**):
 
 ```
-256              ← 1行目: 原子数
-frame 0          ← 2行目: コメント（フレーム番号）
-Cu -0.03527 0.02392 0.04973   ← 3行目以降: 元素 x y z
+256              ← line 1: number of atoms
+frame 0          ← line 2: comment (frame number)
+Cu -0.03527 0.02392 0.04973   ← line 3+: element x y z
 Cu 1.82732 1.67876 0.05763
 ...
 256
@@ -37,9 +39,9 @@ frame 1
 ...
 ```
 
-> この形式には **シミュレーションセル（箱）の情報が入っていません**。そのため OVITO は周期境界なしの系として扱います。
-> 周期境界を使いたい場合は、2行目に `Lattice="..."` を書く Extended XYZ 形式や LAMMPS の dump 形式を使ってください。
+> This format contains **no simulation cell (box) information**, so OVITO treats the system as non-periodic.
+> If you need periodic boundaries, use the Extended XYZ format (with `Lattice="..."` on line 2) or the LAMMPS dump format.
 
-## ライセンス
+## License
 
-[LICENSE](LICENSE) を参照してください。
+See [LICENSE](LICENSE).

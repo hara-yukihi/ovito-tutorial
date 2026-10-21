@@ -1,7 +1,7 @@
-# このチュートリアルで使うパッケージ
-# インストール: python -m pip install -r python/requirements.txt
+# Packages used in this tutorial
+# Install with: python -m pip install -r python/requirements.txt
 ovito>=3.12
 numpy
 matplotlib
-# notebooks/ovito_intro.ipynb を動かす場合に必要
+# Needed to run notebooks/ovito_intro.ipynb
 jupyterlab

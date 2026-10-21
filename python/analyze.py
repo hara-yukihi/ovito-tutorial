@@ -1,12 +1,12 @@
-"""OVITO Python モジュール (pip install ovito) の使い方サンプル。
+"""Example of using the OVITO Python module (pip install ovito).
 
-multi-frame の xyz ファイルを読み込み、次の4つを行う:
-  1. 各フレームの平均二乗変位 (MSD) を計算してグラフにする
-  2. 共通近接解析 (CNA) で FCC 構造の割合をフレームごとに数える
-  3. 最初と最後のフレームの動径分布関数 (RDF) を比べる
-  4. 最初と最後のフレームの断面スナップショットを描画する
+Reads a multi-frame xyz file and does four things:
+  1. Computes the mean squared displacement (MSD) of every frame and plots it
+  2. Counts the fraction of FCC atoms per frame with Common Neighbor Analysis (CNA)
+  3. Compares the radial distribution function (RDF) of the first and last frames
+  4. Renders cross-section snapshots of the first and last frames
 
-使い方 (リポジトリの一番上のフォルダで実行):
+Usage (run from the top folder of the repository):
     python python/analyze.py data/sample.xyz
     python python/analyze.py data/sample.xyz --cutoff 4.0 --outdir results
 """
@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 import matplotlib
-matplotlib.use("Agg")  # 画面の無い環境でも PNG 保存できるようにする
+matplotlib.use("Agg")  # save PNGs even on machines without a display
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -32,24 +32,24 @@ ALLOWED_SUFFIXES = {".xyz"}
 
 
 def parse_args():
-    """コマンドライン引数を読み、値が妥当かを確認する。"""
-    parser = argparse.ArgumentParser(description="OVITO で multi-frame xyz を解析する")
-    parser.add_argument("xyz", help="入力ファイル (.xyz)")
+    """Read command-line arguments and check that the values are valid."""
+    parser = argparse.ArgumentParser(description="Analyze a multi-frame xyz file with OVITO")
+    parser.add_argument("xyz", help="input file (.xyz)")
     parser.add_argument("--cutoff", type=float, default=4.0,
-                        help="RDF のカットオフ半径 [Å] (既定: 4.0)")
+                        help="RDF cutoff radius in Å (default: 4.0)")
     parser.add_argument("--outdir", default="results",
-                        help="結果を保存するフォルダ (既定: results)")
+                        help="folder for the results (default: results)")
     args = parser.parse_args()
 
-    # 入力ファイルのチェック: 存在するか・拡張子が .xyz か
+    # Check the input file: it must exist and have the .xyz extension
     path = Path(args.xyz)
     if not path.is_file():
-        sys.exit(f"エラー: ファイルが見つかりません: {path}")
+        sys.exit(f"Error: file not found: {path}")
     if path.suffix.lower() not in ALLOWED_SUFFIXES:
-        sys.exit(f"エラー: .xyz ファイルを指定してください: {path}")
-    # カットオフは正の妥当な範囲に限定する
+        sys.exit(f"Error: please give an .xyz file: {path}")
+    # Keep the cutoff within a sensible positive range
     if not (0.5 <= args.cutoff <= 20.0):
-        sys.exit("エラー: --cutoff は 0.5〜20.0 Å の範囲で指定してください")
+        sys.exit("Error: --cutoff must be between 0.5 and 20.0 Å")
     return path, args.cutoff, Path(args.outdir)
 
 
@@ -57,22 +57,23 @@ def main():
     xyz_path, cutoff, outdir = parse_args()
     outdir.mkdir(parents=True, exist_ok=True)
 
-    # --- 1. 読み込み -------------------------------------------------------
-    # import_file はフレームが複数あれば自動でまとめて読み込む
+    # --- 1. Load ------------------------------------------------------------
+    # import_file automatically reads all frames of a multi-frame file
     pipeline = import_file(str(xyz_path))
     n_frames = pipeline.source.num_frames
-    print(f"読み込み: {xyz_path}  ({n_frames} フレーム)")
+    print(f"Loaded: {xyz_path}  ({n_frames} frames)")
 
-    # --- 2. モディファイア（GUI の右側パネルに追加するものと同じ）を積む ----
-    # フレーム0を基準にした変位。xyz にはセル情報が無いので周期境界は考えない。
+    # --- 2. Add modifiers (the same ones you add in the GUI's right panel) --
+    # Displacements relative to frame 0. The xyz file has no cell, so there are
+    # no periodic boundaries.
     pipeline.modifiers.append(CalculateDisplacementsModifier(reference_frame=0))
-    # 結晶構造の判定 (FCC / HCP / BCC / ICO / Other)
+    # Crystal structure identification (FCC / HCP / BCC / ICO / Other)
     pipeline.modifiers.append(CommonNeighborAnalysisModifier())
-    # RDF (動径分布関数)
+    # Radial distribution function (RDF)
     pipeline.modifiers.append(
         CoordinationAnalysisModifier(cutoff=cutoff, number_of_bins=100))
 
-    # --- 3. 全フレームを順番に計算 -----------------------------------------
+    # --- 3. Compute every frame in turn -------------------------------------
     msd, fcc_frac = [], []
     rdf_first = rdf_last = None
     for frame in range(n_frames):
@@ -89,7 +90,7 @@ def main():
         if frame == n_frames - 1:
             rdf_last = data.tables["coordination-rdf"].xy()
 
-    # --- 4. 結果を保存 -----------------------------------------------------
+    # --- 4. Save the results ------------------------------------------------
     frames = np.arange(n_frames)
     np.savetxt(outdir / "msd_fcc.txt", np.column_stack([frames, msd, fcc_frac]),
                header="frame  MSD[A^2]  FCC_fraction", fmt="%d %.6f %.4f")
@@ -106,23 +107,24 @@ def main():
     axes[2].legend()
     fig.tight_layout()
     fig.savefig(outdir / "analysis.png", dpi=150)
-    print(f"保存: {outdir / 'analysis.png'}, {outdir / 'msd_fcc.txt'}")
+    print(f"Saved: {outdir / 'analysis.png'}, {outdir / 'msd_fcc.txt'}")
 
-    # --- 5. スナップショットを描画 -----------------------------------------
-    # 描画するにはパイプラインをシーンに追加する。
-    # CNA が原子を構造ごとに色付けする（緑=FCC, 白=Other）。
-    # 最初と最後のフレームを描いて、結晶が崩れていく様子を比べる。
-    # 表面の原子は FCC と判定されず白いので、Slice で中央の薄い層だけ残して内部を見せる。
-    # （解析はもう終わっているので、ここで追加しても上の数値には影響しない）
+    # --- 5. Render snapshots ------------------------------------------------
+    # To render, the pipeline has to be added to the scene.
+    # CNA colors atoms by structure (green = FCC, white = Other).
+    # We render the first and last frames to compare how the crystal breaks down.
+    # Surface atoms are not identified as FCC and appear white, so Slice keeps
+    # only a thin layer in the middle to show the interior.
+    # (The analysis above is already done, so adding Slice here does not change it.)
     zc = float(np.mean(pipeline.compute(0).particles.positions[:, 2]))
     pipeline.modifiers.append(SliceModifier(normal=(0, 0, 1), distance=zc, slab_width=4.0))
     pipeline.add_to_scene()
-    vp = Viewport(type=Viewport.Type.Top)  # 真上 (z 方向) から見る
+    vp = Viewport(type=Viewport.Type.Top)  # look straight down the z axis
     vp.zoom_all()
     for frame, name in [(0, "snapshot_first.png"), (n_frames - 1, "snapshot_last.png")]:
         vp.render_image(filename=str(outdir / name), size=(800, 600),
                         frame=frame, renderer=TachyonRenderer())
-        print(f"保存: {outdir / name}")
+        print(f"Saved: {outdir / name}")
 
 
 if __name__ == "__main__":

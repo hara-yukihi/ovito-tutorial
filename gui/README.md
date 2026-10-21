@@ -1,60 +1,62 @@
-# OVITO GUI の使い方
+**English** | [日本語](README.ja.md)
 
-マウス操作だけで、`data/sample.xyz` を開いて・動かして・解析して・画像にするまでをやります。
+# Using the OVITO GUI
 
-## 1. インストール
+Using only the mouse, we will open `data/sample.xyz`, move around, analyze it, and save images.
 
-1. https://www.ovito.org/ の Download ページから **OVITO Basic**（無料版）をダウンロード
-2. 自分の OS（Windows / macOS / Linux）用のインストーラーを実行
+## 1. Installation
 
-> 有料の OVITO Pro でなくても、このチュートリアルの内容は全部 Basic でできます。
+1. Download **OVITO Basic** (free) from the Download page at https://www.ovito.org/
+2. Run the installer for your OS (Windows / macOS / Linux)
 
-## 2. データを読み込む
+> You do not need the paid OVITO Pro. Everything in this tutorial works with OVITO Basic.
 
-1. このリポジトリの緑の **Code** ボタン → **Download ZIP** でダウンロードして展開
-2. OVITO を起動し、メニューの **File → Load File** から `data/sample.xyz` を選ぶ
-3. 列の対応を聞く画面が出たら、1列目 = `Particle Type`、2〜4列目 = `Position.X / Y / Z` になっていることを確認して **OK**
+## 2. Load the data
 
-![ファイルを読み込んだところ](images/01_load_file.png)
+1. Click the green **Code** button of this repository → **Download ZIP**, then unzip it
+2. Start OVITO and choose `data/sample.xyz` from **File → Load File**
+3. If a column-mapping dialog appears, check that column 1 = `Particle Type` and columns 2–4 = `Position.X / Y / Z`, then click **OK**
 
-## 3. 見た目を動かす
+![After loading the file](images/01_load_file.png)
 
-| 操作 | やり方 |
+## 3. Moving the view
+
+| Action | How |
 |---|---|
-| 回転 | 左ドラッグ（Perspective ビュー） |
-| 移動 | 中ボタンドラッグ（または右ドラッグ） |
-| ズーム | ホイール |
-| 全体を表示 | ビューポート左上の名前をクリック → **Adjust View / Zoom all**、またはダブルクリック |
+| Rotate | Left-drag (Perspective view) |
+| Pan | Middle-drag (or right-drag) |
+| Zoom | Mouse wheel |
+| Show everything | Click the viewport name at the top-left → **Adjust View / Zoom all**, or double-click |
 
-## 4. アニメーション（複数フレーム）
+## 4. Animation (multiple frames)
 
-画面下のタイムスライダーでフレームを切り替えられます。▶ ボタンで再生。
-`sample.xyz` は 30 フレームあり、結晶が少しずつ乱れていく様子が見えます。
+Use the time slider at the bottom to switch frames, and the ▶ button to play.
+`sample.xyz` has 30 frames, and you can watch the crystal gradually become disordered.
 
-![タイムスライダー](images/02_timeline.png)
+![Time slider](images/02_timeline.png)
 
-## 5. モディファイアで解析する
+## 5. Analyze with modifiers
 
-右側のパイプラインの **Add modification...** から次を追加してみてください。
+From **Add modification...** in the pipeline panel on the right, try adding:
 
-1. **Common neighbor analysis** — 結晶構造ごとに色が付く（緑 = FCC、白 = Other）
-2. **Slice** — Normal を `(0, 0, 1)`、Slab width を `4` くらいにすると、中の断面が見える
-3. **Calculate displacements** — フレーム0からどれだけ動いたかを計算
-4. **Color coding** — Input property を `Displacement Magnitude` にすると動いた量で色分け
+1. **Common neighbor analysis** — colors atoms by crystal structure (green = FCC, white = Other)
+2. **Slice** — set Normal to `(0, 0, 1)` and Slab width to about `4` to see a cross-section of the interior
+3. **Calculate displacements** — how far each atom moved from frame 0
+4. **Color coding** — set Input property to `Displacement Magnitude` to color atoms by how much they moved
 
-![モディファイアを追加したところ](images/03_modifiers.png)
+![After adding modifiers](images/03_modifiers.png)
 
-> 表面の原子が白い（FCC と判定されない）のは、周期境界が無く近接原子が足りないためです。Slice で中を見ると緑になっています。
+> Surface atoms are white (not FCC) because the system has no periodic boundaries, so they lack enough neighbors. Look inside with Slice and you will see green atoms.
 
-## 6. 画像・動画を保存する
+## 6. Save images and movies
 
-1. 右上のタブから **Render**（カメラのアイコン）を開く
-2. **Save to file** にチェックを入れて保存先を指定
-3. 静止画: **Render active viewport**
-4. 動画: Rendering range を **Complete animation** にして、ファイル名を `.mp4` や `.gif` にしてから Render
+1. Open the **Render** tab (camera icon) at the top-right
+2. Check **Save to file** and choose an output file
+3. Still image: **Render active viewport**
+4. Movie: set Rendering range to **Complete animation**, use a file name ending in `.mp4` or `.gif`, then render
 
-![レンダリング設定](images/04_render.png)
+![Render settings](images/04_render.png)
 
-## 7. セッションを保存する
+## 7. Save your session
 
-**File → Save Session State** で、追加したモディファイアや視点を `.ovito` ファイルとして保存できます。次回はこれを開けば同じ状態から再開できます。
+**File → Save Session State** saves your modifiers and view as an `.ovito` file, so you can open it later and continue from the same state.

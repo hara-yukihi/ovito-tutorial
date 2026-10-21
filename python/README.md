@@ -1,25 +1,27 @@
-# OVITO を Python から使う（pip 版）
+**English** | [日本語](README.ja.md)
 
-`pip install ovito` で、GUI と同じ解析機能を Python スクリプトから使えます。
-大量のファイルを同じ手順で解析したいときや、結果をグラフにしたいときに便利です。
+# Using OVITO from Python (pip version)
 
-## 1. Python を用意する
+With `pip install ovito`, you get the same analysis features as the GUI, from Python scripts.
+This is handy when you want to analyze many files the same way or turn results into plots.
 
-**Python 3.11 以上** が必要です（ovito 3.17 の場合）。ターミナルで確認:
+## 1. Get Python
+
+**Python 3.11 or later** is required (for ovito 3.17). Check in a terminal:
 
 ```bash
 python --version
 ```
 
-入っていなければ https://www.python.org/downloads/ からインストールしてください。
-（Windows ではインストール時に **Add python.exe to PATH** にチェック）
+If Python is not installed, get it from https://www.python.org/downloads/
+(On Windows, check **Add python.exe to PATH** during installation.)
 
-> Intel CPU の Mac は、最新版の ovito では対応していない場合があります。うまく入らない時は相談してください。
+> Macs with Intel CPUs may not be supported by the latest ovito release. Ask if installation fails.
 
-## 2. 仮想環境を作ってインストール
+## 2. Create a virtual environment and install
 
-仮想環境 (venv) は、このチュートリアル専用の Python の部屋のようなものです。他のプロジェクトとパッケージが混ざりません。
-リポジトリの一番上のフォルダ（`README.md` がある場所）で実行します。
+A virtual environment (venv) is like a private room for this tutorial's Python packages, so they do not mix with other projects.
+Run these commands in the top folder of the repository (where `README.md` is).
 
 **macOS / Linux**
 
@@ -39,53 +41,53 @@ python -m pip install -U pip
 python -m pip install -r python/requirements.txt
 ```
 
-行頭に `(.venv)` と表示されていれば仮想環境に入っています。次回からは `activate` の行だけ実行すれば OK です。
+If `(.venv)` appears at the start of the prompt, you are inside the virtual environment. Next time, you only need to run the `activate` line.
 
-インストールできたか確認:
+Check the installation:
 
 ```bash
 python -c "import ovito; print(ovito.version_string)"
 ```
 
-## 3. 解析スクリプトを動かす
+## 3. Run the analysis script
 
 ```bash
 python python/analyze.py data/sample.xyz
 ```
 
-`results/` フォルダに次のファイルができます。
+The following files are created in the `results/` folder:
 
-| ファイル | 内容 |
+| File | Contents |
 |---|---|
-| `analysis.png` | MSD・FCC 割合・RDF のグラフ |
-| `msd_fcc.txt` | フレームごとの数値 |
-| `snapshot_first.png` / `snapshot_last.png` | 最初と最後のフレームの断面画像 |
+| `analysis.png` | Plots of MSD, FCC fraction and RDF |
+| `msd_fcc.txt` | Per-frame values |
+| `snapshot_first.png` / `snapshot_last.png` | Cross-section images of the first and last frames |
 
-オプション:
+Options:
 
 ```bash
 python python/analyze.py data/sample.xyz --cutoff 5.0 --outdir my_results
 ```
 
-## 4. ノートブックで1つずつ試す
+## 4. Try things step by step in the notebook
 
 ```bash
 jupyter lab
 ```
 
-ブラウザが開いたら `notebooks/ovito_intro.ipynb` を開き、上のセルから `Shift + Enter` で実行します。
+When the browser opens, open `notebooks/ovito_intro.ipynb` and run the cells from the top with `Shift + Enter`.
 
-## GUI との対応
+## GUI ↔ Python
 
-| GUI の操作 | Python |
+| GUI action | Python |
 |---|---|
 | File → Load File | `pipeline = import_file("data/sample.xyz")` |
 | Add modification... | `pipeline.modifiers.append(CommonNeighborAnalysisModifier())` |
-| タイムスライダーでフレーム移動 | `data = pipeline.compute(frame)` |
+| Move the time slider | `data = pipeline.compute(frame)` |
 | Render active viewport | `Viewport(...).render_image(...)` |
 
-## うまくいかない時
+## Troubleshooting
 
-- **`ModuleNotFoundError: No module named 'ovito'`** → 仮想環境に入っていない可能性があります。`activate` をやり直してください。
-- **Linux サーバーで画像の描画だけ失敗する (Vulkan のエラー)** → `sudo apt install mesa-vulkan-drivers` などで Vulkan ドライバを入れる必要があります。グラフと数値の出力までは問題なく動きます。
-- 公式ドキュメント: https://docs.ovito.org/python/
+- **`ModuleNotFoundError: No module named 'ovito'`** → You are probably not inside the virtual environment. Run the `activate` line again.
+- **Only image rendering fails on a Linux server (Vulkan error)** → Install a Vulkan driver, e.g. `sudo apt install mesa-vulkan-drivers`. Plots and numeric output work without it.
+- Official documentation: https://docs.ovito.org/python/
