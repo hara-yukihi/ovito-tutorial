@@ -18,11 +18,10 @@ from ovito.modifiers import (
     ColorCodingModifier,
 )
 from ovito.vis import Viewport, TextLabelOverlay, OpenGLRenderer
-from ovito.qt_compatibility import QtCore
 
 # ---------------- User settings ----------------
-XYZ_FILE = "../data/sample.xyz"
-OUT_MP4 = "sample.mp4"
+XYZ_FILE = "traj.xyz"
+OUT_MP4 = "traj.mp4"
 
 DT_FS = 0.5                # MD timestep [fs]; time = N * DT_FS
 
@@ -87,10 +86,9 @@ vp = Viewport(type=Viewport.Type.Perspective,
               camera_dir=CAMERA_DIR,
               fov=math.radians(FOV_DEG))
 
-# Time label in the upper-left corner
+# Time label in the upper-left corner (upper-left is the default alignment, so no Qt import is needed)
 vp.overlays.append(TextLabelOverlay(
     text="t = [Time] fs",
-    alignment=QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignTop,
     offset_x=0.02, offset_y=-0.02,
     font_size=0.05,
     text_color=(0.0, 0.0, 0.0)))
