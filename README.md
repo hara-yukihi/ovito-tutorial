@@ -19,7 +19,7 @@ The same dataset is used with both the **GUI (mouse operations)** and **Python (
 ## About the practice data
 
 `data/sample_xyz` is an artificial trajectory of SCFON molecule (it is not scientifically correct at all, just for demo).
-`data/sample_original.xyz` is an artificial trajectory of a Cu FCC crystal (with some Ag near the center) that becomes increasingly disordered frame by frame.
+`data/sample_Cu_Ag_fcc.xyz` is an artificial trajectory of a Cu FCC crystal (with some Ag near the center) that becomes increasingly disordered frame by frame.
 It is not a physically correct MD simulation; it is only meant for practice.
 
 File format (**repeated for every frame**):
