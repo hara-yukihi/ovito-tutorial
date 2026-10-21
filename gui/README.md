@@ -51,4 +51,4 @@ The above list overviews properties I frequently use. You can explore more if yo
 5. (optional) Go to layer tab (next to render tab) to add layer. You can add text, coordinate tripod, or color bar in the video. Unless you subscribe ovito pro, pip ver has more options than gui ver.
 6. To preview how it is shown in output, click top left corner of view point and check **preview mode**.
 7. Click **Render active view point** (with camera icon. you will find this at the bottom of **Render settings**) to render.
-8. (optional) You can record your best camera angle. Click top left corner of view point → Click adjust view... . Snapshot or take a note of set value so that you can reproduce it next time. However, it is hassile to manually do this on gui every time, so I recommend using pip version if you always need to keep camera angle.
+8. (optional) You can record your best camera angle. Click top left corner of view point → Click adjust view... . Snapshot or take a note of set value so that you can reproduce it next time. However, it is hassile to manually do this on gui every time, so I recommend using pip version if you always use same rendering setting.
