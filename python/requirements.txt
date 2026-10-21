@@ -1,7 +1,0 @@
-# Packages used in this tutorial
-# Install with: python -m pip install -r python/requirements.txt
-ovito>=3.12
-numpy
-matplotlib
-# Needed to run notebooks/ovito_intro.ipynb
-jupyterlab
