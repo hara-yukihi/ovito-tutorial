@@ -65,6 +65,23 @@ time [fs] = N × DT_FS
 
 [uv](https://docs.astral.sh/uv/) is a fast Python package manager.
 
+### 0. Check whether you have uv
+
+```bash
+which uv
+uv --version
+```
+
+On HPC cluster such as discovery, you can further search;
+
+```bash
+module avail 2>&1 | grep uv
+module spider uv
+```
+
+If you have uv, go to step 2. If not, proceed to step 1.
+
+
 ### 1. Install uv
 
 macOS / Linux:
