@@ -40,7 +40,7 @@ From **Add modification...** in the pipeline panel on the right, try adding:
 2. **Select type** + **Compute property** (with Compute only for selected particles option) + **Clear selection** - you can adjust color, radii, shape.. type by type. Make sure add **clear selection** when you use **Select type**: it might cause problem when you add multiple modifiers. They are like ( and ).
 3. **Compute property** + **Color coding** — You can compute new value and add a column to your data by using **Compute property**. Then **Color coding** helps you to visualize.
 
-The above list overviews properties I frequently use. You can explore more if you like.
+The above list overviews properties I frequently use. You can explore more at official ovito website/manual if you like.
 
 ## 6. Save movies
 
