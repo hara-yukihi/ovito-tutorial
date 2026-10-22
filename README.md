@@ -15,8 +15,9 @@ The same dataset is used with both the **GUI (mouse operations)** and **Python (
 
 If you wish to do hands-on of pip version ovito, please clone this repository to your work directory.
 ```
-git clone 
+git clone git@github.com:hara-yukihi/ovito-tutorial.git
 ```
+You may need to edit ssh setting of github before executing this command (if you get an error when you execute it, you can find further info on internet or just ask ai agent about error message).
 
 ## Suggested order
 
