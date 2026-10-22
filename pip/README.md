@@ -125,7 +125,7 @@ python -c "import ovito; print(ovito.version)"
 python render_xyz.py
 ```
 
-The movie is saved as `traj.mp4`.
+The movie is saved as `sample.mp4`.
 
 ---
 
