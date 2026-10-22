@@ -13,7 +13,7 @@ The same dataset is used with both the **GUI (mouse operations)** and **Python (
 
 ## Before starting
 
-If you wish to do hands-on of pip version ovito, please clone this repository to your work directory.
+If you wish to do hands-on, please clone this repository to your work directory.
 ```
 git clone git@github.com:hara-yukihi/ovito-tutorial.git
 ```
