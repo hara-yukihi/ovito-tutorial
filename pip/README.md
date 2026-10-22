@@ -5,6 +5,14 @@ This example shows how to make an MP4 movie from an XYZ trajectory with the
 
 The script is `render_xyz.py`.
 
+Why use pip version? The biggest reason is that you can ask ai agent (like claude or codex) to render video or snapshot directly.
+
+You can prompt like this: "Can you render these structure files into mp4 video using pip ver ovito?"
+
+To describe what video you need more precisely, you can add direction (simply copy&pasting **What the script does** & **Input file format** sections below is one example. I got render_xyz.py by this.)
+
+However, I recommend you to do it manually at once to use it effectively.
+
 ---
 
 ## What the script does
