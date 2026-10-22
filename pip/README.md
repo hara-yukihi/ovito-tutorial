@@ -13,7 +13,7 @@ To describe what video you need more precisely, you can add direction (simply co
 
 However, I recommend you to examine the code line by line and execute python code manually at once to use it more effectively.
 
-Once you know how to use pip ver ovito, you can reproduce the same operation that you can do on GUI ver ovito basic (e.g. adding modifiers, adjust rendering settings, adding text layer, ...) or even more (some operations on ovito pro (needs subscription) is not included in ovito basic on gui, but they are available on pip ver for free).
+Once you know how to use pip ver ovito, you can reproduce the same operation that you can do on GUI ver ovito basic (e.g. adding modifiers, adjust rendering settings, adding text layer, ...), or even more (some operations on ovito pro (needs subscription) are not included in ovito basic on gui, but they are available on pip ver for free).
 
 ---
 
