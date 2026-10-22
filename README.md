@@ -11,6 +11,13 @@ The same dataset is used with both the **GUI (mouse operations)** and **Python (
 | [`gui/`](gui/README.md) | How to use the OVITO GUI (with screenshots) |
 | [`pip/`](pip/README.md) | Installing the Python module and the render script `render_xyz.py` |
 
+## Before starting
+
+If you wish to do hands-on of pip version ovito, please clone this repository to your work directory.
+```
+git clone 
+```
+
 ## Suggested order
 
 1. Start with [`gui/README.md`](gui/README.md): open the data and play with it
