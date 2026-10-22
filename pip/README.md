@@ -11,7 +11,7 @@ You can prompt like this: "Can you render these structure files into mp4 video u
 
 To describe what video you need more precisely, you can add direction (simply copy&pasting **What the script does** & **Input file format** sections below is one example. I got render_xyz.py by this.)
 
-However, I recommend you to do it manually at once to use it effectively.
+However, I recommend you to examine the code line by line and execute python code manually at once to use it effectively.
 
 ---
 
