@@ -14,7 +14,7 @@ The same dataset is used with both the **GUI (mouse operations)** and **Python (
 ## Suggested order
 
 1. Start with [`gui/README.md`](gui/README.md): open the data and play with it
-2. Set up Python with [`pyip/README.md`](pip/README.md), and run `pip/render_xyz.py` on your own data
+2. Set up Python with [`pip/README.md`](pip/README.md), and run `pip/render_xyz.py` on your own data
 
 ## About the practice data
 
