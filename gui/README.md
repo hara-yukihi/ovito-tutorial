@@ -12,7 +12,7 @@ I show you only simple examples here. Further information is available at offiti
 
 ## 2. Load the data
 
-1. Click the green **Code** button of this repository → **Download ZIP**, then unzip it
+1. Click the green **Code** button of this repository → **Download ZIP**, then unzip it (or clone this repository by git clone command)
 2. Start OVITO and choose `data/sample.xyz` from **File → Load File**
 3. If a column-mapping dialog appears, check that column 1 = `Particle Type` and columns 2–4 = `Position.X / Y / Z`, then click **OK**
 4. Make sure to check `File contains multiple timesteps`. You can find this by click **Pipelines** tab at the top of the right setting box → click sample.xyz under **Data source** → See **Options** under **XYZ render** setting.
