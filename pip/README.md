@@ -9,9 +9,11 @@ Why use pip version? The biggest reason is that you can ask ai agent (like claud
 
 You can prompt like this: "Can you render these structure files into mp4 video using pip ver ovito?"
 
-To describe what video you need more precisely, you can add direction (simply copy&pasting **What the script does** & **Input file format** sections below is one example. I got render_xyz.py by this.)
+To describe what video you need more precisely, you can add direction (simply copy&pasting **What the script does** & **Input file format** sections below is one example. I got render_xyz.py by this.). 
 
-However, I recommend you to examine the code line by line and execute python code manually at once to use it effectively.
+However, I recommend you to examine the code line by line and execute python code manually at once to use it more effectively.
+
+Once you know how to use pip ver ovito, you can reproduce the same operation that you can do on GUI ver ovito basic (e.g. adding modifiers, adjust rendering settings, adding text layer, ...) or even more (some operations on ovito pro (needs subscription) is not included in ovito basic on gui, but they are available on pip ver for free).
 
 ---
 
